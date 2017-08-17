@@ -1,4 +1,4 @@
-
+/*
 var factorial = x =>{
   let i=x;
   var ans=x;
@@ -15,8 +15,9 @@ var factorial = x =>{
 
 
 }
+*/
 // the above codes works well, but can not be combined with prototype
-/*
+
 var factorial = function(x){
   let i=x;
   var ans=x;
@@ -34,7 +35,6 @@ var factorial = function(x){
     console.log( `this is the asnwer ${this.test}`);
 
 }
-*/
 var test = factorial(8);
 console.log(`test ${test}`);
 //console.log(`the answer is ${test}`);
