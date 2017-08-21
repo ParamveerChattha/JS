@@ -1,14 +1,22 @@
 var myObj = [5, [22], [[14]], [[4]],[5,6]]
+var newarr=[];
 
-
-var flat =function(arr)
+function flat(arr)
 {
-
+j=0;
   for (i in arr)
   {
-    return  (myObj[i]);
-
+    if(typeof(myObj[i]) === "object")
+      {
+        flat(myObj[j]);
+      console.log('obj discovered');
+    }
+    else {
+      newarr.push(myObj[i]);
+      j=j+1;
+    }
   }
 }
 var X= [flat(myObj)];
-console.log(X)
+console.log(newarr);
+//console.log(X)

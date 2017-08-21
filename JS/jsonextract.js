@@ -60,9 +60,7 @@ var jsonobj =JSON.parse(jsonstr);
 for (props in jsonobj){
   for (propsinner in (jsonobj[props].articles)){
 
-
-}
-
-}
-
   console.log(jsonobj[3].articles[3]);
+}
+
+}
