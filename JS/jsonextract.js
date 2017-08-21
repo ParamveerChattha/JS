@@ -53,9 +53,14 @@ var jsonstr ={
 }]
 }
 
+
 jsonstr = JSON.stringify(jsonstr);
 var jsonobj =JSON.parse(jsonstr);
-
+//console.log(jsonobj);
+console.log(Object.Keys(jsonobj.articles.author));
+// if (Object.Keys(jsonobj.articles.author)=="Bryan Clark"){
+//   console.log(jsonobj.articles.title);
+// }
 //console.log(jsonobj);
 for (props in jsonobj){
   for (propsinner in (jsonobj[props].articles)){
@@ -65,4 +70,4 @@ for (props in jsonobj){
 
 }
 
-  console.log(jsonobj[3].articles[3]);
+//  console.log(jsonobj[3].articles[3]);

@@ -24,5 +24,4 @@ for (i in myObj){
       console.log(myObj[j]);
     }
   }
-
 }
