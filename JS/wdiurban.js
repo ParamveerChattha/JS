@@ -2,16 +2,21 @@ var fs = require('fs'); // adding fs module
 var readline = require('readline'); // adding readline module
 path = '../inputdata/indicators.csv';
 // var read_stream = fs.createReadStream('');
-var rl = readline.createInterface({
+var rl = readline.createInterface({ //interface to read each line until eof
     input: fs.createReadStream(path)
       });
-
+// created required variables
 let country;
 let type;
 let year;
 let value;
 let count=0;
-let result=[]
+let result=[];
+let ruralPop=0;
+let urbanPop=0;
+let ruralPer=0;
+let urbanPer=0;
+
 //var i=0;
 /* rl.on('data', (chunk) => {
   console.log(`Received ${chunk.length} bytes of data.`);
@@ -20,36 +25,53 @@ rl.on('line', function(line){
 //    temp.push(line.split('\n'));
 //    console.log(temp);
   line= line.split(',');
-  if(count===0){
-    country = line.indexOf('CountryName');
+  if(count===0){ // to run it only once of index row
+    country = line.indexOf('CountryName'); // below are the columns indexes taken out by the names
     type = line.indexOf('IndicatorName');
     year = line.indexOf('Year');
     value = line.indexOf('Value');
   //  console.log(country+ ' '+ type+ ' ' + year+ ' ' +value);
     count ++;  }
-    if(line[country]==='India'){
-    result.map(function(element){
-              element['country']=line[country];
-
-              if(line[type]==='Urban population')
-              {
-                element['Urban population']= line[value];
-              }
-              if(line[type]==='Rural population')
-              {
-                element['Rural population']= live[value] ;
-              }
-            }
-        });
+    if(line[country]==='India'){ // filter as per requirement
+  //    if(typeof(line[year])===Number){
+      if(line[type] === 'Urban population')
+//        console.log(line[value] + ' ' + line[type] + ' year is ' + line[year]);
+          urbanPop=(line[value]);
+      if(line[type]==='Rural population')
+//        console.log(line[value] + ' ' + line[type] +' year is ' + line[year]);
+          ruralPop=(line[value]);
+      if(ruralPop!=0 && urbanPop!=0) // condition until both populations are not found while traversing line  by line.
+      {
+//        console.log('checking values of rural and urban ' + ruralPop + ' ' + urbanPop );
+      var totPop =(Number(ruralPop)+Number(urbanPop)); // total population for one particular year
+      ruralPer=parseFloat(((ruralPop)/(totPop)))*100; // formula
+      urbanPer=parseFloat((urbanPop)/(totPop))*100;
+//      console.log(totPop+' Rural pop '+ruralPop+' Urban'+urbanPop+' RualPerc '+ruralPer+' urban is '+ urbanPer);
+/*  the below code will push the result into the variable as an object which will be written into JSON format/file later */
+        result.push({"country":line[country],"year":line[year],"rural Percentage":ruralPer,"Urban Percentage":urbanPer})
+        ruralPop=0;
+        urbanPop=0;
       }
 
+//      console.log(ruralPer + ' is rural percent');
+//      console.log(urbanPer + ' is urban percent');
+    }
     });
 
 
 rl.on('close', function(close){
+//  console.log(result);
+
+//  console.log(result[9]);
+// writting the object into file
+fs.writeFile('./widurban.json',JSON.stringify(result),(err) =>{
+  if(err)
+    throw err;
+  console.log('file has been saved');
   console.log('JSON written successfully')
-  console.log(result[9]);
 });
+});
+
 
 
 //    console.log(result[9]);
