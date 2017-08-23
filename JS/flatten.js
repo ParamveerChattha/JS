@@ -1,5 +1,9 @@
 var myObj = [5, [22], [[14]], [[4]],[5,6]]
+var newarr=[];
 
+<<<<<<< HEAD
+function flat(arr)
+=======
 temp =((myObj.toString()));
 var newObj = temp.split(',').map(Number);
 console.log(newObj);
@@ -17,14 +21,27 @@ console.log(newObj);
 
 /*
 var flat =function(arr)
+>>>>>>> fedcd2a52a917394d5eafeeefa34ddd144525975
 {
-
+j=0;
   for (i in arr)
   {
-    return  (myObj[i]);
-
+    if(typeof(myObj[i]) === "object")
+      {
+        flat(myObj[j]);
+      console.log('obj discovered');
+    }
+    else {
+      newarr.push(myObj[i]);
+      j=j+1;
+    }
   }
 }
 var X= [flat(myObj)];
+<<<<<<< HEAD
+console.log(newarr);
+//console.log(X)
+=======
 console.log(X)
 */
+>>>>>>> fedcd2a52a917394d5eafeeefa34ddd144525975
