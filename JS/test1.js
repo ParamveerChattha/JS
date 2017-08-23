@@ -28,3 +28,7 @@ var arr = [3,5,7,'here', x= (function(){
 var arrJson= JSON.parse(JSON.stringify(arr));
 console.log(arrJson);
 console.log(Object.keys(arrJson)+" "+Object.values(arrJson));
+
+var a = new object():
+  or
+var a= {} ??????
